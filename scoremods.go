@@ -164,22 +164,22 @@ func (d Duel) trapTriggersMod() int {
 	return -32
 }
 
-func (d Duel) trapTriggersMod() int {
-	if d.trapTriggers < 0 {
-		fmt.Println("Trap Triggers are somehow negative, fix!!")
+func (d Duel) cardsUsedMod() int {
+	if d.cardsUsed < 0 {
+		fmt.Println("Cards Used are somehow negative, fix!!")
 		return 0
 	}
-	if d.trapTriggers < 1 {
-		return 2
+	if d.cardsUsed < 9 {
+		return 15
 	}
-	if d.trapTriggers < 3 {
-		return -8
+	if d.cardsUsed < 13 {
+		return 12
 	}
-	if d.trapTriggers < 5 {
-		return -16
+	if d.cardsUsed < 33 {
+		return 0
 	}
-	if d.trapTriggers < 7 {
-		return -24
+	if d.cardsUsed < 37 {
+		return -5
 	}
-	return -32
+	return -7
 }
