@@ -15,8 +15,21 @@ type Duel struct {
 
 func startDuelTracker() Duel {
 	return Duel{
-		score: 50,
+		turns:            0,
+		effectiveAttacks: 0,
+		defensiveWins:    0,
+		facedownPlays:    0,
+		fusions:          0,
+		equips:           0,
+		magics:           0,
+		trapTriggers:     0,
+		cardsUsed:        0,
+		lpRemaining:      8000,
 	}
+}
+
+func getScore(duel Duel) int {
+	return 50
 }
 
 func getRank(score int) string {
