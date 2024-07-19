@@ -95,31 +95,51 @@ func (d Duel) fusionsMod() int {
 	if d.fusions < 5 {
 		return 0
 	}
-	if d.facedownPlays < 10 {
+	if d.fusions < 10 {
 		return -4
 	}
-	if d.facedownPlays < 15 {
+	if d.fusions < 15 {
 		return -8
 	}
 	return -12
 }
 
-func (d Duel) fusionsMod() int {
-	if d.fusions < 0 {
-		fmt.Println("Fusions are somehow negative, fix!!")
+func (d Duel) equipsMod() int {
+	if d.equips < 0 {
+		fmt.Println("Equips are somehow negative, fix!!")
 		return 0
 	}
-	if d.fusions < 1 {
+	if d.equips < 1 {
 		return 4
 	}
-	if d.fusions < 5 {
+	if d.equips < 5 {
 		return 0
 	}
-	if d.facedownPlays < 10 {
+	if d.equips < 10 {
 		return -4
 	}
-	if d.facedownPlays < 15 {
+	if d.equips < 15 {
 		return -8
 	}
 	return -12
+}
+
+func (d Duel) magicsMod() int {
+	if d.magics < 0 {
+		fmt.Println("Magics are somehow negative, fix!!")
+		return 0
+	}
+	if d.magics < 1 {
+		return 2
+	}
+	if d.magics < 4 {
+		return -4
+	}
+	if d.magics < 7 {
+		return -8
+	}
+	if d.magics < 10 {
+		return -12
+	}
+	return -16
 }
