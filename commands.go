@@ -9,7 +9,7 @@ import (
 type Command struct {
 	name        string
 	description string
-	command     func()
+	command     func(*Duel)
 }
 
 func getCommands() map[string]Command {
@@ -24,15 +24,20 @@ func getCommands() map[string]Command {
 			description: "Display help message",
 			command:     commandHelp,
 		},
+		"status": {
+			name:        "status",
+			description: "Display current state of the duel",
+			command:     commandStatus,
+		},
 	}
 	return commandMap
 }
 
-func commandExit() {
+func commandExit(duel *Duel) {
 	os.Exit(0)
 }
 
-func commandHelp() {
+func commandHelp(duel *Duel) {
 	scanner := bufio.NewScanner(os.Stdin)
 	commandMap := getCommands()
 	fmt.Println("")
@@ -41,4 +46,8 @@ func commandHelp() {
 	}
 	fmt.Print("\nPress ENTER to continue > ")
 	scanner.Scan()
+}
+
+func commandStatus(duel *Duel) {
+	return
 }
