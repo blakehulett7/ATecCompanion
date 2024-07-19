@@ -7,11 +7,12 @@ import (
 )
 
 func startPrompt() {
+	duelTracker := startDuelTracker()
 	commandMap := getCommands()
 	scanner := bufio.NewScanner(os.Stdin)
 	for {
-		fmt.Println("\nCurrent rank: ")
-		fmt.Println("Duel Points: ")
+		fmt.Println("\nCurrent rank:", getRank(duelTracker.score))
+		fmt.Println("Duel Points:", duelTracker.score)
 		fmt.Print("\nAction > ")
 		scanner.Scan()
 		input := scanner.Text()
