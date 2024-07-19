@@ -183,3 +183,19 @@ func (d Duel) cardsUsedMod() int {
 	}
 	return -7
 }
+
+func (d Duel) lpRemainingMod() int {
+	if d.lpRemaining >= 8000 {
+		return 6
+	}
+	if d.lpRemaining >= 7000 {
+		return 4
+	}
+	if d.lpRemaining >= 1000 {
+		return 0
+	}
+	if d.lpRemaining >= 100 {
+		return -5
+	}
+	return -7
+}
