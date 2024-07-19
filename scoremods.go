@@ -143,3 +143,43 @@ func (d Duel) magicsMod() int {
 	}
 	return -16
 }
+
+func (d Duel) trapTriggersMod() int {
+	if d.trapTriggers < 0 {
+		fmt.Println("Trap Triggers are somehow negative, fix!!")
+		return 0
+	}
+	if d.trapTriggers < 1 {
+		return 2
+	}
+	if d.trapTriggers < 3 {
+		return -8
+	}
+	if d.trapTriggers < 5 {
+		return -16
+	}
+	if d.trapTriggers < 7 {
+		return -24
+	}
+	return -32
+}
+
+func (d Duel) trapTriggersMod() int {
+	if d.trapTriggers < 0 {
+		fmt.Println("Trap Triggers are somehow negative, fix!!")
+		return 0
+	}
+	if d.trapTriggers < 1 {
+		return 2
+	}
+	if d.trapTriggers < 3 {
+		return -8
+	}
+	if d.trapTriggers < 5 {
+		return -16
+	}
+	if d.trapTriggers < 7 {
+		return -24
+	}
+	return -32
+}
