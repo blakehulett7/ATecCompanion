@@ -84,21 +84,42 @@ func (d Duel) facedownPlaysMod() int {
 	return -8
 }
 
-func (d Duel) facedownPlaysMod() int {
-	if d.facedownPlays < 0 {
-		fmt.Println("Facedown Plays are somehow negative, fix!!")
+func (d Duel) fusionsMod() int {
+	if d.fusions < 0 {
+		fmt.Println("Fusions are somehow negative, fix!!")
 		return 0
 	}
-	if d.facedownPlays < 1 {
+	if d.fusions < 1 {
+		return 4
+	}
+	if d.fusions < 5 {
 		return 0
 	}
-	if d.facedownPlays < 11 {
-		return -2
-	}
-	if d.facedownPlays < 21 {
+	if d.facedownPlays < 10 {
 		return -4
 	}
-	if d.facedownPlays < 31 {
-		return -6
+	if d.facedownPlays < 15 {
+		return -8
 	}
-	return -8
+	return -12
+}
+
+func (d Duel) fusionsMod() int {
+	if d.fusions < 0 {
+		fmt.Println("Fusions are somehow negative, fix!!")
+		return 0
+	}
+	if d.fusions < 1 {
+		return 4
+	}
+	if d.fusions < 5 {
+		return 0
+	}
+	if d.facedownPlays < 10 {
+		return -4
+	}
+	if d.facedownPlays < 15 {
+		return -8
+	}
+	return -12
+}
