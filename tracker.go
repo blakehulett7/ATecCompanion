@@ -28,11 +28,12 @@ func startDuelTracker() Duel {
 	}
 }
 
-func getScore(duel Duel) int {
-	return 50
+func (d Duel) getScore() int {
+	return 50 + d.turnMod() + d.effectiveAttacksMod() + d.defensiveWinsMod() + d.facedownPlaysMod() + d.fusionsMod() + d.equipsMod() + d.magicsMod() + d.trapTriggersMod() + d.cardsUsedMod() + d.lpRemainingMod()
 }
 
-func getRank(score int) string {
+func (d Duel) getRank() string {
+	score := d.getScore()
 	if score <= 9 {
 		return "S Tec"
 	}

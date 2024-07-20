@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"os/exec"
 )
 
 func startPrompt() {
@@ -11,17 +12,28 @@ func startPrompt() {
 	commandMap := getCommands()
 	scanner := bufio.NewScanner(os.Stdin)
 	for {
-		fmt.Println("\nCurrent rank:", getRank(duelTracker.score))
-		fmt.Println("Duel Points:", duelTracker.score)
+		fmt.Println("Welcome to the A Tec Companion! Use this to get quick A Tecs and great cards!")
+		fmt.Println("\nCurrent rank:", duelTracker.getRank())
+		fmt.Println("Duel Points:", duelTracker.getScore())
 		fmt.Print("\nAction > ")
 		scanner.Scan()
 		input := scanner.Text()
 		if !inputValidator(input) {
-			fmt.Println("invalid action, type 'help' for valid actions")
+			fmt.Println("\ninvalid action, type 'help' for valid actions")
+			fmt.Print("\nPress ENTER to continue > ")
+			scanner.Scan()
+			clear := exec.Command("clear")
+			clear.Stdout = os.Stdout
+			clear.Run()
 			continue
 		}
 		command := commandMap[input]
-		command.command()
+		command.command(&duelTracker)
+		fmt.Print("\nPress ENTER to continue > ")
+		scanner.Scan()
+		clear := exec.Command("clear")
+		clear.Stdout = os.Stdout
+		clear.Run()
 	}
 }
 
