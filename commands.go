@@ -132,7 +132,7 @@ func commandTurnStatus(duel *Duel) {
 }
 
 func commandEffectiveAttacksStatus(duel *Duel) {
-	fmt.Println("\nEffective Attacks", duel.effectiveAttacks)
+	fmt.Println("\nEffective Attacks:", duel.effectiveAttacks)
 	fmt.Println("Score Impact:", duel.effectiveAttacksMod())
 	fmt.Println("")
 	factorLines := []FactorLine{
@@ -146,7 +146,7 @@ func commandEffectiveAttacksStatus(duel *Duel) {
 }
 
 func commandDefensiveWinsStatus(duel *Duel) {
-	fmt.Println("\nDefensive Wins", duel.defensiveWins)
+	fmt.Println("\nDefensive Wins:", duel.defensiveWins)
 	fmt.Println("Score Impact:", duel.defensiveWinsMod())
 	fmt.Println("")
 	factorLines := []FactorLine{
@@ -160,7 +160,7 @@ func commandDefensiveWinsStatus(duel *Duel) {
 }
 
 func commandFacedownPlaysStatus(duel *Duel) {
-	fmt.Println("\nFacedown Plays", duel.facedownPlays)
+	fmt.Println("\nFacedown Plays:", duel.facedownPlays)
 	fmt.Println("Score Impact:", duel.facedownPlaysMod())
 	fmt.Println("")
 	factorLines := []FactorLine{
@@ -174,7 +174,7 @@ func commandFacedownPlaysStatus(duel *Duel) {
 }
 
 func commandFusionStatus(duel *Duel) {
-	fmt.Println("\nFusions Played", duel.fusions)
+	fmt.Println("\nFusions Played:", duel.fusions)
 	fmt.Println("Score Impact:", duel.fusionsMod())
 	fmt.Println("")
 	factorLines := []FactorLine{
@@ -188,7 +188,7 @@ func commandFusionStatus(duel *Duel) {
 }
 
 func commandEquipStatus(duel *Duel) {
-	fmt.Println("\nEquips Played", duel.equips)
+	fmt.Println("\nEquips Played:", duel.equips)
 	fmt.Println("Score Impact:", duel.equipsMod())
 	fmt.Println("")
 	factorLines := []FactorLine{
@@ -202,7 +202,7 @@ func commandEquipStatus(duel *Duel) {
 }
 
 func commandMagicStatus(duel *Duel) {
-	fmt.Println("\nPure Magics Played", duel.magics)
+	fmt.Println("\nPure Magics Played:", duel.magics)
 	fmt.Println("Score Impact:", duel.magicsMod())
 	fmt.Println("")
 	factorLines := []FactorLine{
@@ -216,7 +216,7 @@ func commandMagicStatus(duel *Duel) {
 }
 
 func commandTrapStatus(duel *Duel) {
-	fmt.Println("\nTraps Triggered", duel.trapTriggers)
+	fmt.Println("\nTraps Triggered:", duel.trapTriggers)
 	fmt.Println("Score Impact:", duel.trapTriggersMod())
 	fmt.Println("")
 	factorLines := []FactorLine{
@@ -230,7 +230,7 @@ func commandTrapStatus(duel *Duel) {
 }
 
 func commandCardsStatus(duel *Duel) {
-	fmt.Println("\nCards Used", duel.cardsUsed)
+	fmt.Println("\nCards Used:", duel.cardsUsed)
 	fmt.Println("Score Impact:", duel.cardsUsedMod())
 	fmt.Println("")
 	factorLines := []FactorLine{
@@ -244,7 +244,7 @@ func commandCardsStatus(duel *Duel) {
 }
 
 func commandLpStatus(duel *Duel) {
-	fmt.Println("\nLP Left", duel.lpRemaining)
+	fmt.Println("\nLP Left:", duel.lpRemaining)
 	fmt.Println("Score Impact:", duel.lpRemainingMod())
 	fmt.Println("")
 	factorLines := []FactorLine{

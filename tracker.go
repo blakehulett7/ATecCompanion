@@ -36,12 +36,22 @@ func startDuelTracker() Duel {
 }
 
 func commandPlayCards(duel *Duel) {
-	scanner := bufio.NewScanner(os.Stdout)
+	scanner := bufio.NewScanner(os.Stdin)
 	fmt.Print("\nHow many fusions did you make? > ")
 	scanner.Scan()
 	fusionInput := scanner.Text()
 	fusions, _ := strconv.Atoi(fusionInput)
-	fmt.Println(duel.fusions)
+	duel.cardsUsed += fusions
 	duel.fusions += fusions
-	fmt.Println(duel.fusions)
+	fmt.Print("\nHow many equips did you use? > ")
+	scanner.Scan()
+	equipInput := scanner.Text()
+	equips, _ := strconv.Atoi(equipInput)
+	duel.cardsUsed += equips
+	duel.equips += equips
+	fmt.Print("\nHow many cards were discarded or played vanilla? > ")
+	scanner.Scan()
+	cardInput := scanner.Text()
+	cards, _ := strconv.Atoi(cardInput)
+	duel.cardsUsed += cards
 }
