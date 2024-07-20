@@ -91,6 +91,11 @@ func getCommands() map[string]Command {
 			description: "Display how many life points are left",
 			command:     commandLpStatus,
 		},
+		"status": {
+			name:        "status",
+			description: "Display overall duel status",
+			command:     commandStatus,
+		},
 	}
 	return commandMap
 }
@@ -245,4 +250,17 @@ func commandLpStatus(duel *Duel) {
 		{frequency: "under 100", scoremod: -7},
 	}
 	logRankFactor(duel.lpRemainingMod(), factorLines)
+}
+
+func commandStatus(duel *Duel) {
+	commandTurnStatus(duel)
+	commandEffectiveAttacksStatus(duel)
+	commandDefensiveWinsStatus(duel)
+	commandFacedownPlaysStatus(duel)
+	commandFusionStatus(duel)
+	commandEquipStatus(duel)
+	commandMagicStatus(duel)
+	commandTrapStatus(duel)
+	commandCardsStatus(duel)
+	commandLpStatus(duel)
 }
