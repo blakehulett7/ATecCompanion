@@ -19,9 +19,9 @@ type FactorLine struct {
 	scoremod  int
 }
 
-func logRankFactor(duel *Duel, factorLines []FactorLine) {
+func logRankFactor(duel *Duel, currentScoreMod int, factorLines []FactorLine) {
 	for _, line := range factorLines {
-		if duel.turnMod() == line.scoremod {
+		if currentScoreMod == line.scoremod {
 			fmt.Printf(string(cyan)+"  > %v: %v\n"+string(reset), line.frequency, line.scoremod)
 			continue
 		}
@@ -41,12 +41,12 @@ func getCommands() map[string]Command {
 			description: "Display help message",
 			command:     commandHelp,
 		},
-		"turnstatus": {
+		"turn status": {
 			name:        "turnstatus",
 			description: "Display how many turns have passed this duel",
 			command:     commandTurnStatus,
 		},
-		"effectiveattacksstatus": {
+		"effective attack status": {
 			name:        "effectiveattacksstatus",
 			description: "Display how many effective attacks you've had this duel",
 			command:     commandEffectiveAttacksStatus,
@@ -71,20 +71,14 @@ func commandTurnStatus(duel *Duel) {
 	fmt.Println("\nTurns Passed:", duel.turns)
 	fmt.Println("Score Impact:", duel.turnMod())
 	fmt.Println("")
-	lineMap := map[string]int{
-		"0-4":   12,
-		"5-8":   8,
-		"9-28":  0,
-		"29-32": -8,
-		">33":   -12,
+	factorLines := []FactorLine{
+		{frequency: "0-4", scoremod: 12},
+		{frequency: "5-8", scoremod: 8},
+		{frequency: "9-28", scoremod: 0},
+		{frequency: "29-32", scoremod: -8},
+		{frequency: "over 33", scoremod: -12},
 	}
-	for key, value := range lineMap {
-		if duel.turnMod() == lineMap[key] {
-			fmt.Printf(string(cyan)+"    %v: %v\n"+string(reset), key, value)
-			continue
-		}
-		fmt.Printf("    %v: %v\n", key, value)
-	}
+	logRankFactor(duel, duel.turnMod(), factorLines)
 }
 
 func commandEffectiveAttacksStatus(duel *Duel) {
@@ -92,11 +86,11 @@ func commandEffectiveAttacksStatus(duel *Duel) {
 	fmt.Println("Score Impact:", duel.effectiveAttacksMod())
 	fmt.Println("")
 	factorLines := []FactorLine{
-		{frequency: "0-1", scoremod: 12},
-		{frequency: "5-8", scoremod: 8},
+		{frequency: "0-1", scoremod: 4},
+		{frequency: "5-8", scoremod: 2},
 		{frequency: "9-28", scoremod: 0},
-		{frequency: "29-32", scoremod: -8},
-		{frequency: ">33", scoremod: -12},
+		{frequency: "29-32", scoremod: -2},
+		{frequency: "over 33", scoremod: -4},
 	}
-	logRankFactor(duel, factorLines)
+	logRankFactor(duel, duel.effectiveAttacksMod(), factorLines)
 }
