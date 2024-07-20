@@ -19,7 +19,7 @@ type FactorLine struct {
 	scoremod  int
 }
 
-func logRankFactor(duel *Duel, currentScoreMod int, factorLines []FactorLine) {
+func logRankFactor(currentScoreMod int, factorLines []FactorLine) {
 	for _, line := range factorLines {
 		if currentScoreMod == line.scoremod {
 			fmt.Printf(string(cyan)+"  > %v: %v\n"+string(reset), line.frequency, line.scoremod)
@@ -103,7 +103,7 @@ func commandTurnStatus(duel *Duel) {
 		{frequency: "29-32", scoremod: -8},
 		{frequency: "over 33", scoremod: -12},
 	}
-	logRankFactor(duel, duel.turnMod(), factorLines)
+	logRankFactor(duel.turnMod(), factorLines)
 }
 
 func commandEffectiveAttacksStatus(duel *Duel) {
@@ -117,7 +117,7 @@ func commandEffectiveAttacksStatus(duel *Duel) {
 		{frequency: "29-32", scoremod: -2},
 		{frequency: "over 33", scoremod: -4},
 	}
-	logRankFactor(duel, duel.effectiveAttacksMod(), factorLines)
+	logRankFactor(duel.effectiveAttacksMod(), factorLines)
 }
 
 func commandDefensiveWinsStatus(duel *Duel) {
@@ -131,7 +131,7 @@ func commandDefensiveWinsStatus(duel *Duel) {
 		{frequency: "10-14", scoremod: -30},
 		{frequency: "over 15", scoremod: -40},
 	}
-	logRankFactor(duel, duel.defensiveWinsMod(), factorLines)
+	logRankFactor(duel.defensiveWinsMod(), factorLines)
 }
 
 func commandFacedownPlaysStatus(duel *Duel) {
@@ -145,7 +145,7 @@ func commandFacedownPlaysStatus(duel *Duel) {
 		{frequency: "21-30", scoremod: -6},
 		{frequency: "over 30", scoremod: -8},
 	}
-	logRankFactor(duel, duel.facedownPlaysMod(), factorLines)
+	logRankFactor(duel.facedownPlaysMod(), factorLines)
 }
 
 func commandFusionStatus(duel *Duel) {
@@ -159,7 +159,7 @@ func commandFusionStatus(duel *Duel) {
 		{frequency: "10-14", scoremod: -8},
 		{frequency: "over 14", scoremod: -12},
 	}
-	logRankFactor(duel, duel.fusionsMod(), factorLines)
+	logRankFactor(duel.fusionsMod(), factorLines)
 }
 
 func commandEquipStatus(duel *Duel) {
@@ -173,7 +173,7 @@ func commandEquipStatus(duel *Duel) {
 		{frequency: "10-14", scoremod: -8},
 		{frequency: "over 14", scoremod: -12},
 	}
-	logRankFactor(duel, duel.equipsMod(), factorLines)
+	logRankFactor(duel.equipsMod(), factorLines)
 }
 
 func commandMagicStatus(duel *Duel) {
@@ -187,5 +187,5 @@ func commandMagicStatus(duel *Duel) {
 		{frequency: "7-9", scoremod: -12},
 		{frequency: "over 9", scoremod: -16},
 	}
-	logRankFactor(duel, duel.magicsMod(), factorLines)
+	logRankFactor(duel.magicsMod(), factorLines)
 }
