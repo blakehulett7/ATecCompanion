@@ -66,6 +66,11 @@ func getCommands() map[string]Command {
 			description: "Display how many fusions you've had this duel",
 			command:     commandFusionStatus,
 		},
+		"equip status": {
+			name:        "equip status",
+			description: "Display how many equips you've used this duel",
+			command:     commandEquipStatus,
+		},
 	}
 	return commandMap
 }
@@ -150,4 +155,18 @@ func commandFusionStatus(duel *Duel) {
 		{frequency: "over 14", scoremod: -12},
 	}
 	logRankFactor(duel, duel.fusionsMod(), factorLines)
+}
+
+func commandEquipStatus(duel *Duel) {
+	fmt.Println("\nEquips Played", duel.equips)
+	fmt.Println("Score Impact:", duel.equipsMod())
+	fmt.Println("")
+	factorLines := []FactorLine{
+		{frequency: "0", scoremod: 4},
+		{frequency: "1-4", scoremod: 0},
+		{frequency: "5-9", scoremod: -4},
+		{frequency: "10-14", scoremod: -8},
+		{frequency: "over 14", scoremod: -12},
+	}
+	logRankFactor(duel, duel.equipsMod(), factorLines)
 }
