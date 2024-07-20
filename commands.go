@@ -5,14 +5,29 @@ import (
 	"os"
 )
 
+const cyan = "\033[36m"
+const reset = "\033[0m"
+
 type Command struct {
 	name        string
 	description string
 	command     func(*Duel)
 }
 
-const cyan = "\033[36m"
-const reset = "\033[0m"
+type FactorLine struct {
+	frequency string
+	scoremod  int
+}
+
+func logRankFactor(duel *Duel, factorLines []FactorLine) {
+	for _, line := range factorLines {
+		if duel.turnMod() == line.scoremod {
+			fmt.Printf(string(cyan)+"  > %v: %v\n"+string(reset), line.frequency, line.scoremod)
+			continue
+		}
+		fmt.Printf("    %v: %v\n", line.frequency, line.scoremod)
+	}
+}
 
 func getCommands() map[string]Command {
 	commandMap := map[string]Command{
@@ -76,18 +91,12 @@ func commandEffectiveAttacksStatus(duel *Duel) {
 	fmt.Println("\nEffective Attacks", duel.effectiveAttacks)
 	fmt.Println("Score Impact:", duel.effectiveAttacksMod())
 	fmt.Println("")
-	lineMap := map[string]int{
-		"0-1":   12,
-		"5-8":   8,
-		"9-28":  0,
-		"29-32": -8,
-		">33":   -12,
+	factorLines := []FactorLine{
+		{frequency: "0-1", scoremod: 12},
+		{frequency: "5-8", scoremod: 8},
+		{frequency: "9-28", scoremod: 0},
+		{frequency: "29-32", scoremod: -8},
+		{frequency: ">33", scoremod: -12},
 	}
-	for key, value := range lineMap {
-		if duel.turnMod() == lineMap[key] {
-			fmt.Printf(string(cyan)+"    %v: %v\n"+string(reset), key, value)
-			continue
-		}
-		fmt.Printf("    %v: %v\n", key, value)
-	}
+	logRankFactor(duel, factorLines)
 }
