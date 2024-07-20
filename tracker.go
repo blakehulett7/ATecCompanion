@@ -62,5 +62,31 @@ func commandSetCard(duel *Duel) {
 }
 
 func commandPlayMagic(duel *Duel) {
+	duel.cardsUsed++
 	duel.magics += 1
+}
+
+func commandEffectiveAttack(duel *Duel) {
+	duel.effectiveAttacks++
+}
+
+func commandDefensiveWin(duel *Duel) {
+	duel.defensiveWins++
+}
+
+func commandTriggerTrap(duel *Duel) {
+	duel.trapTriggers++
+}
+
+func commandEndTurn(duel *Duel) {
+	duel.turns++
+}
+
+func commandLoseLp(duel *Duel) {
+	scanner := bufio.NewScanner(os.Stdin)
+	fmt.Print("\nHow many life points did you lose? > ")
+	scanner.Scan()
+	input := scanner.Text()
+	lostLP, _ := strconv.Atoi(input)
+	duel.lpRemaining -= lostLP
 }

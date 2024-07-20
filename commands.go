@@ -111,6 +111,31 @@ func getCommands() map[string]Command {
 			description: "Play a pure magic card",
 			command:     commandPlayMagic,
 		},
+		"effective attack": {
+			name:        "effective attack",
+			description: "Record an attack that destroys a monster and damages opponent",
+			command:     commandEffectiveAttack,
+		},
+		"defensive win": {
+			name:        "defensive win",
+			description: "Record that your opponent attacked your defense position monster and took damage",
+			command:     commandDefensiveWin,
+		},
+		"trigger trap": {
+			name:        "trigger trap",
+			description: "Record that your opponent has activated your trap card",
+			command:     commandTriggerTrap,
+		},
+		"end turn": {
+			name:        "end turn",
+			description: "Record that you and your opponent have taken your turn",
+			command:     commandEndTurn,
+		},
+		"lose lp": {
+			name:        "lose lp",
+			description: "Record that you have lost life points",
+			command:     commandLoseLp,
+		},
 	}
 	return commandMap
 }
