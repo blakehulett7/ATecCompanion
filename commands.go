@@ -86,6 +86,11 @@ func getCommands() map[string]Command {
 			description: "Display how many cards you've used this duel",
 			command:     commandCardsStatus,
 		},
+		"lp status": {
+			name:        "lp status",
+			description: "Display how many life points are left",
+			command:     commandLpStatus,
+		},
 	}
 	return commandMap
 }
@@ -226,4 +231,18 @@ func commandCardsStatus(duel *Duel) {
 		{frequency: "over 36", scoremod: -7},
 	}
 	logRankFactor(duel.cardsUsedMod(), factorLines)
+}
+
+func commandLpStatus(duel *Duel) {
+	fmt.Println("\nLP Left", duel.lpRemaining)
+	fmt.Println("Score Impact:", duel.lpRemainingMod())
+	fmt.Println("")
+	factorLines := []FactorLine{
+		{frequency: "8000", scoremod: 6},
+		{frequency: "7000-7999", scoremod: 4},
+		{frequency: "1000-6999", scoremod: 0},
+		{frequency: "100-999", scoremod: -5},
+		{frequency: "under 100", scoremod: -7},
+	}
+	logRankFactor(duel.lpRemainingMod(), factorLines)
 }
