@@ -71,6 +71,11 @@ func getCommands() map[string]Command {
 			description: "Display how many equips you've used this duel",
 			command:     commandEquipStatus,
 		},
+		"magic status": {
+			name:        "magic status",
+			description: "Display how many pure magics you've used this duel",
+			command:     commandMagicStatus,
+		},
 	}
 	return commandMap
 }
@@ -169,4 +174,18 @@ func commandEquipStatus(duel *Duel) {
 		{frequency: "over 14", scoremod: -12},
 	}
 	logRankFactor(duel, duel.equipsMod(), factorLines)
+}
+
+func commandMagicStatus(duel *Duel) {
+	fmt.Println("\nPure Magics Played", duel.magics)
+	fmt.Println("Score Impact:", duel.magicsMod())
+	fmt.Println("")
+	factorLines := []FactorLine{
+		{frequency: "0", scoremod: 2},
+		{frequency: "1-3", scoremod: -4},
+		{frequency: "4-6", scoremod: -8},
+		{frequency: "7-9", scoremod: -12},
+		{frequency: "over 9", scoremod: -16},
+	}
+	logRankFactor(duel, duel.magicsMod(), factorLines)
 }
