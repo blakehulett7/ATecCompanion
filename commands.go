@@ -96,6 +96,11 @@ func getCommands() map[string]Command {
 			description: "Display overall duel status",
 			command:     commandStatus,
 		},
+		"play cards": {
+			name:        "play cards",
+			description: "Play some cards",
+			command:     commandPlayCards,
+		},
 	}
 	return commandMap
 }

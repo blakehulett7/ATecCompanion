@@ -1,5 +1,12 @@
 package main
 
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+)
+
 type Duel struct {
 	turns            int
 	effectiveAttacks int
@@ -26,4 +33,15 @@ func startDuelTracker() Duel {
 		cardsUsed:        0,
 		lpRemaining:      8000,
 	}
+}
+
+func commandPlayCards(duel *Duel) {
+	scanner := bufio.NewScanner(os.Stdout)
+	fmt.Print("\nHow many fusions did you make? > ")
+	scanner.Scan()
+	fusionInput := scanner.Text()
+	fusions, _ := strconv.Atoi(fusionInput)
+	fmt.Println(duel.fusions)
+	duel.fusions += fusions
+	fmt.Println(duel.fusions)
 }
