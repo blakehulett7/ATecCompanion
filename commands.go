@@ -101,6 +101,16 @@ func getCommands() map[string]Command {
 			description: "Play some cards",
 			command:     commandPlayCards,
 		},
+		"set card": {
+			name:        "set card",
+			description: "Set a card",
+			command:     commandSetCard,
+		},
+		"play magic": {
+			name:        "play magic",
+			description: "Play a pure magic card",
+			command:     commandPlayMagic,
+		},
 	}
 	return commandMap
 }

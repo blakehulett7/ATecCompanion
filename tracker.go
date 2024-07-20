@@ -55,3 +55,12 @@ func commandPlayCards(duel *Duel) {
 	cards, _ := strconv.Atoi(cardInput)
 	duel.cardsUsed += cards
 }
+
+func commandSetCard(duel *Duel) {
+	duel.cardsUsed += 1
+	duel.facedownPlays += 1
+}
+
+func commandPlayMagic(duel *Duel) {
+	duel.magics += 1
+}
