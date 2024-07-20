@@ -56,6 +56,11 @@ func getCommands() map[string]Command {
 			description: "Display how many defensive wins you've had this duel",
 			command:     commandDefensiveWinsStatus,
 		},
+		"facedown plays status": {
+			name:        "facedown plays status",
+			description: "Display how many facedown plays you've had this duel",
+			command:     commandFacedownPlaysStatus,
+		},
 	}
 	return commandMap
 }
@@ -112,4 +117,18 @@ func commandDefensiveWinsStatus(duel *Duel) {
 		{frequency: "over 15", scoremod: -40},
 	}
 	logRankFactor(duel, duel.defensiveWinsMod(), factorLines)
+}
+
+func commandFacedownPlaysStatus(duel *Duel) {
+	fmt.Println("\nFacedown Plays", duel.facedownPlays)
+	fmt.Println("Score Impact:", duel.facedownPlaysMod())
+	fmt.Println("")
+	factorLines := []FactorLine{
+		{frequency: "0", scoremod: 0},
+		{frequency: "1-10", scoremod: -2},
+		{frequency: "11-20", scoremod: -4},
+		{frequency: "21-30", scoremod: -6},
+		{frequency: "over 30", scoremod: -8},
+	}
+	logRankFactor(duel, duel.facedownPlaysMod(), factorLines)
 }
