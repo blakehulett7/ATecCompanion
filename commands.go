@@ -76,6 +76,11 @@ func getCommands() map[string]Command {
 			description: "Display how many pure magics you've used this duel",
 			command:     commandMagicStatus,
 		},
+		"trap status": {
+			name:        "trap status",
+			description: "Display how many traps you've triggered this duel",
+			command:     commandTrapStatus,
+		},
 	}
 	return commandMap
 }
@@ -188,4 +193,18 @@ func commandMagicStatus(duel *Duel) {
 		{frequency: "over 9", scoremod: -16},
 	}
 	logRankFactor(duel.magicsMod(), factorLines)
+}
+
+func commandTrapStatus(duel *Duel) {
+	fmt.Println("\nTraps Triggered", duel.trapTriggers)
+	fmt.Println("Score Impact:", duel.trapTriggersMod())
+	fmt.Println("")
+	factorLines := []FactorLine{
+		{frequency: "0", scoremod: 2},
+		{frequency: "1-2", scoremod: -8},
+		{frequency: "3-4", scoremod: -16},
+		{frequency: "5-6", scoremod: -24},
+		{frequency: "over 6", scoremod: -32},
+	}
+	logRankFactor(duel.trapTriggersMod(), factorLines)
 }
